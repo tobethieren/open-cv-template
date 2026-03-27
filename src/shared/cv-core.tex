@@ -1,0 +1,245 @@
+% Copyright (C) 2026 Tobe Thieren
+%
+% This work may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License, version 1.3c or any later version.
+% The latest version of this license is in:
+%   https://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008-05-04 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is:
+%   Tobe Thieren
+%
+% This work is part of the Open CV Template for LaTeX.
+% The complete list of files is given in manifest.txt.
+
+\usepackage{fontspec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{geometry}
+\geometry{margin=1.5cm}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage[skins]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{parskip}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{comment}
+
+\setmainfont[Path=../../assets/fonts/, Extension=.otf]{SourceSansPro-Light}[
+    BoldFont = SourceSansPro-Regular,
+    ItalicFont = SourceSansPro-LightIt
+]
+
+\makeatletter
+
+\definecolor{basecolor}{HTML}{000066}
+\colorlet{linkcolor}{basecolor}
+\colorlet{accentcolor}{linkcolor!90}
+\colorlet{symbolcolor}{linkcolor!85}
+\definecolor{darkGrey}{HTML}{989898}
+
+\hypersetup{
+    pdfborder = {0 0 0},
+    breaklinks,
+    colorlinks=true,
+    urlcolor=linkcolor,
+    linkcolor=linkcolor,
+    citecolor=linkcolor
+}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+
+\titleformat{\section}{\Large\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{2pt}{2pt}
+
+\setlist[itemize,1]{label=\faAngleRight, nosep, leftmargin=2em}
+\setlist[itemize,2]{label=\faAngleRight, nosep, leftmargin=1.5em}
+
+\newlength{\rechterkolomlengte}
+\setlength{\rechterkolomlengte}{14.8cm}
+\newlength{\linkerkolom}
+\setlength{\linkerkolom}{2.5cm}
+
+\newcommand{\mailsymbool}{\faEnvelope}
+\newcommand{\locatiesymbool}{\faMapMarker}
+\newcommand{\infosymbool}{\faInfoCircle}
+\newcommand{\linkedinsymbool}{\faLinkedin}
+\newcommand{\viadeosymbool}{\faViadeo}
+\newcommand{\mobielsymbool}{\faMobile}
+\newcommand{\githubsymbool}{\faGithub}
+
+\newcommand\link[2]{\color{linkcolor}\href{#1}{#2}\color{black}}
+\newcommand\belangrijk[1]{\textbf{#1}}
+
+\newcommand{\cvtag}[1]{%
+    \tikz[baseline]\node[anchor=base,draw=darkGrey!70,rounded corners=0.5ex,inner xsep=1ex,inner ysep=0.55ex,text height=1.3ex,text depth=.25ex]{#1};
+}
+
+\newcommand\gebruiker[2]{\color{accentcolor}{\LARGE #1 \textsc{\textbf{#2}}}\color{black}}
+
+\newcommand{\socialetekst}[2]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}#2\hspace{1em}}}
+\newcommand{\socialelink}[3]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}\link{#2}{#3}\hspace{1em}}}
+
+\newcommand*{\cv@name}[2]{\def\@voornaam{#1}\def\@achternaam{#2}}
+\newcommand*{\cv@firstname}[1]{\def\@voornaam{#1}}
+\newcommand*{\cv@lastname}[1]{\def\@achternaam{#1}}
+\newcommand*{\cv@tagline}[1]{\def\@tagline{#1}}
+\newcommand{\cv@photo}[2]{\def\@foto{#2}\def\@fotodiameter{#1}}
+\newcommand{\cv@socialinfo}[1]{\def\@socialeinfo{#1}}
+
+\newcommand*{\cv@address}[1]{\socialetekst{\locatiesymbool}{#1}}
+\newcommand*{\cv@details}[1]{\socialetekst{\infosymbool}{#1}}
+\newcommand*{\cv@linkedin}[1]{\socialelink{\linkedinsymbool}{http://www.linkedin.com/in/#1}{linkedin.com/in/#1}}
+\newcommand*{\cv@viadeo}[1]{\socialelink{\viadeosymbool}{http://www.viadeo.com/nl/profile/#1}{viadeo.com/nl/profile/#1}}
+\newcommand*{\cv@github}[1]{\socialelink{\githubsymbool}{https://www.github.com/#1}{github.com/#1}}
+\newcommand*{\cv@email}[1]{\socialelink{\mailsymbool}{mailto:#1}{#1}}
+\newcommand*{\cv@website}[2]{\socialelink{\faGlobe}{#1}{#2}}
+\newcommand*\cv@mobile[1]{\socialetekst{\mobielsymbool}{#1}}
+
+\newcommand\cvkop[1]{
+    \par{\bigskip\center{\Large \color{accentcolor}\textbf{#1}\color{black}}\par}
+    \bigskip
+}
+
+\newcommand\idfoto{
+    \includegraphics[width=\@fotodiameter]{\@foto}
+}
+
+\newcommand*{\cv@makeheader}{
+    \begin{minipage}{\dimexpr\linewidth-\@fotodiameter-2em}
+        \gebruiker{\@voornaam}{\@achternaam}
+        \cvkop{\@tagline}
+        {\small{\@socialeinfo}}
+    \end{minipage}
+    \begin{minipage}{\@fotodiameter}
+        \idfoto
+    \end{minipage}
+    \bigskip
+}
+
+\newcommand*{\cv@makefooter}[3]{%
+    \fancyfoot{}
+    \fancyfoot[L]{#1}
+    \fancyfoot[C]{#2}
+    \fancyfoot[R]{#3}
+}
+
+\newcommand\cv@sectiontitle[2]{\section{\texorpdfstring{\color{accentcolor}#2\enspace \textsc{#1}}{#1}}}
+
+\newenvironment{cv@keywords}{%
+    \renewcommand{\arraystretch}{1.1}
+    \begin{tabular}{>{}r>{}p{13cm}}
+        }{%
+    \end{tabular}
+}
+\newcommand\cv@keywordentry[2]{\textbf{#1} & #2\\}
+
+\newcolumntype{Y}{>{\raggedleft}p{\linkerkolom}}
+
+\newenvironment{cv@education}{%
+    \begin{tabular}{Y p{\rechterkolomlengte}}
+        }{%
+    \end{tabular}
+}
+\newcommand\cv@educationentry[2]{#1 & #2 \\}
+
+\newcolumntype{R}[1]{>{\hfill}m{#1}}
+\newenvironment{cv@skills}{%
+    \begin{longtable}{R{\linkerkolom}p{\rechterkolomlengte}}
+        }{%
+    \end{longtable}
+}
+\newcommand\cv@skill[2]{
+    \textbf{#1} & \foreach \x in {1,...,5}{{\color{accentcolor!80} \ifnumgreater{\x}{#2}{\faCircle}{\faCircle}}\enspace } \\
+}
+
+\newcolumntype{E}{>{\raggedright\arraybackslash}p{\rechterkolomlengte}}
+\newenvironment{cv@experience}{%
+    \begin{longtable}{R{\linkerkolom}|E}
+        }{%
+    \end{longtable}
+}
+\newcommand\cv@experienceentry[7]{%
+    \textbf{#1} & \textbf{\textcolor{accentcolor}{#2}, \textsc{#3}, #4} \\
+    \textbf{#5} & #6 \\
+    & \footnotesize{\foreach \n in {#7}{\cvtag{\n}}} \\
+}
+\newcommand\cv@consultantentry[9]{%
+    \textbf{#1} & \textbf{#2, \textsc{#3}, #4} \\
+    \textbf{#5} & \emph{#6} voor \textsc{#7} \\
+    & #8 \\
+    & \footnotesize{\foreach \n in {#9}{\cvtag{\n}}} \\
+}
+
+\newcommand\cv@emptyseparator{\multicolumn{2}{c}{}\\}
+
+\newenvironment{cv@projects}{%
+    \begin{longtable}{l}
+        }{%
+    \end{longtable}
+}
+\newcommand\cv@project[5]{%
+    \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+        \textbf{\textsc{#1}} \hfill \textsc{#2}\smallskip\\
+        #3\\
+        #4\smallskip\\
+        \footnotesize{\foreach \n in {#5}{\cvtag{\n}}}\\
+    \end{minipage}
+    \\*
+}
+
+\newenvironment{cv@volunteer}{%
+    \begin{longtable}{l}
+        }{%
+    \end{longtable}
+}
+\newcommand\cv@volunteerentry[4]{%
+    \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+        \textbf{\textsc{#1}} \hfill \textsc{#2}\smallskip\\
+        #3\smallskip\\
+        \footnotesize{\foreach \n in {#4}{\cvtag{\n}}} \\
+    \end{minipage}
+    \\*
+}
+
+\newcommand*\cv@twocolumnsection[2]{%
+    \par\noindent
+    \begin{minipage}[t]{\dimexpr(\linewidth/2) - 3em}
+        #1
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{\dimexpr(\linewidth/2) - 3em}
+        #2
+    \end{minipage}
+    \par
+}
+
+\newenvironment{cv@references}{%
+}{%
+    \hfill
+    \bigskip
+}
+\newcommand*\cv@reference[5]{%
+    \hspace{1em}
+    \begin{minipage}[t]{\dimexpr(\linewidth/3) - 3em}
+        \begin{tabular}{>{}l >{}l}
+            \multicolumn{2}{l}{\textbf{#1}}            \\
+            \multicolumn{2}{l}{\emph{#2}, \textsc{#3}} \\
+            \quad \mailsymbool & \href{mailto:#4}{#4}  \\
+            \quad \faPhone     & #5                    \\
+        \end{tabular}
+    \end{minipage}%
+}
+
+\makeatother

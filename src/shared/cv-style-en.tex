@@ -1,0 +1,57 @@
+% Copyright (C) 2026 Tobe Thieren
+%
+% This work may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License, version 1.3c or any later version.
+% The latest version of this license is in:
+%   https://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2008-05-04 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is:
+%   Tobe Thieren
+%
+% This work is part of the Open CV Template for LaTeX.
+% The complete list of files is given in manifest.txt.
+
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\input{../shared/cv-core.tex}
+\makeatletter
+
+\newcommand*{\name}[2]{\cv@name{#1}{#2}}
+\newcommand*{\firstname}[1]{\cv@firstname{#1}}
+\newcommand*{\lastname}[1]{\cv@lastname{#1}}
+\newcommand*{\tagline}[1]{\cv@tagline{#1}}
+\newcommand{\photo}[2]{\cv@photo{#1}{#2}}
+\newcommand{\socialinfo}[1]{\cv@socialinfo{#1}}
+\newcommand*{\address}[1]{\cv@address{#1}}
+\newcommand*{\details}[1]{\cv@details{#1}}
+\newcommand*{\linkedin}[1]{\cv@linkedin{#1}}
+\newcommand*{\viadeo}[1]{\cv@viadeo{#1}}
+\newcommand*{\github}[1]{\cv@github{#1}}
+\newcommand*{\email}[1]{\cv@email{#1}}
+\newcommand*{\website}[2]{\cv@website{#1}{#2}}
+\newcommand*\mobile[1]{\cv@mobile{#1}}
+\newcommand*{\makecvheader}{\cv@makeheader}
+\newcommand*{\makecvfooter}[3]{\cv@makefooter{#1}{#2}{#3}}
+\newcommand\sectiontitle[2]{\cv@sectiontitle{#1}{#2}}
+\newenvironment{keywords}{\begin{cv@keywords}}{\end{cv@keywords}}
+\newcommand\keywordentry[2]{\cv@keywordentry{#1}{#2}}
+\newenvironment{education}{\begin{cv@education}}{\end{cv@education}}
+\newcommand\educationentry[2]{\cv@educationentry{#1}{#2}}
+\newenvironment{skills}{\begin{cv@skills}}{\end{cv@skills}}
+\newcommand\skill[2]{\cv@skill{#1}{#2}}
+\newenvironment{experience}{\begin{cv@experience}}{\end{cv@experience}}
+\newcommand\experienceentry[7]{\cv@experienceentry{#1}{#2}{#3}{#4}{#5}{#6}{#7}}
+\newcommand\consultantexperience[9]{\cv@consultantentry{#1}{#2}{#3}{#4}{#5}{#6}{#7}{#8}{#9}}
+\newcommand\emptyseparator{\cv@emptyseparator}
+\newenvironment{projects}{\begin{cv@projects}}{\end{cv@projects}}
+\newcommand\project[5]{\cv@project{#1}{#2}{#3}{#4}{#5}}
+\newenvironment{volunteerwork}{\begin{cv@volunteer}}{\end{cv@volunteer}}
+\newcommand\volunteerentry[4]{\cv@volunteerentry{#1}{#2}{#3}{#4}}
+\newcommand*\twocolumnsection[2]{\cv@twocolumnsection{#1}{#2}}
+\newenvironment{referencessection}{\begin{cv@references}}{\end{cv@references}}
+\newcommand*\referenceentry[5]{\cv@reference{#1}{#2}{#3}{#4}{#5}}
+\makeatother

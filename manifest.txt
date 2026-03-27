@@ -1,0 +1,46 @@
+Open CV Template for LaTeX
+Manifest
+Copyright (C) 2026 Tobe Thieren
+
+This manifest lists the files that constitute the Work for the purposes of the
+LaTeX Project Public License (LPPL), version 1.3c or later.
+
+Root files
+----------
+README.md
+LICENSE
+Makefile
+manifest.txt
+
+LaTeX source files
+------------------
+src/shared/cv-core.tex
+src/shared/cv-style-en.tex
+src/shared/cv-style-nl.tex
+
+src/en/main.tex
+src/en/section_education.tex
+src/en/section_experience.tex
+src/en/section_hobbies.tex
+src/en/section_languages.tex
+src/en/section_references.tex
+src/en/section_skills.tex
+src/en/section_summary.tex
+src/en/section_volunteerwork.tex
+
+src/nl/main.tex
+src/nl/sectie_ervaring.tex
+src/nl/sectie_opleiding.tex
+src/nl/sectie_referenties.tex
+src/nl/sectie_samenvatting.tex
+src/nl/sectie_talen.tex
+src/nl/sectie_vaardigheden.tex
+src/nl/sectie_vrijetijdsbesteding.tex
+src/nl/sectie_vrijwilligerswerk.tex
+
+Assets
+------
+Any asset files in assets/ are part of the Work only if they are original
+files created by the copyright holder and intended for distribution under LPPL.
+Third-party assets, if any, are excluded from the Work unless explicitly stated
+otherwise in their own file headers or accompanying license information.
