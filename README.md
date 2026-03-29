@@ -2,7 +2,7 @@
 
 A two-language CV template repository for LaTeX users, with one Dutch version and one English version in the same project.
 
-This repository is a clean rewrite of an older private CV setup that had become difficult to run and maintain on modern LaTeX installations. The visual style of the original layout was intentionally preserved, while the content, structure and packaging were reworked into a reusable template.
+This repository is a clean rewrite of an older public CV setup that had become difficult to run and maintain on modern LaTeX installations. The visual style of the original layout was intentionally preserved, while the content, structure and packaging were reworked into a reusable template.
 
 If you recognise the original public source or inspiration behind the older version of this layout, please open an issue or discussion on GitHub. A proper attribution note will gladly be added.
 
