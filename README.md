@@ -6,6 +6,13 @@ This repository is a clean rewrite of an older private CV setup that had become 
 
 If you recognise the original public source or inspiration behind the older version of this layout, please open an issue or discussion on GitHub. A proper attribution note will gladly be added.
 
+## Preview
+
+| | With photo | Without photo |
+|---|---|---|
+| **English** | [![English CV preview (with photo)](previews/cv-template-preview-en-with-photo.png)](previews/cv-template-preview-en-with-photo.pdf) | [![English CV preview (without photo)](previews/cv-template-preview-en-no-photo.png)](previews/cv-template-preview-en-no-photo.pdf) |
+| **Dutch** | [![Dutch CV preview (with photo)](previews/cv-template-preview-nl-with-photo.png)](previews/cv-template-preview-nl-with-photo.pdf) | [![Dutch CV preview (without photo)](previews/cv-template-preview-nl-no-photo.png)](previews/cv-template-preview-nl-no-photo.pdf) |
+
 ## What is included
 
 - `src/nl/` - Dutch CV source files with Dutch-facing macro names
@@ -49,6 +56,12 @@ The template uses `fontspec`, so it should be compiled with **XeLaTeX**.
 
 ## Build instructions
 
+Run build commands from the **repository root** (the folder that contains `Makefile`).
+
+Compiled PDFs are written to the `build/` directory.
+
+### Linux/macOS/WSL (Makefile)
+
 Build both language versions:
 
 ```bash
@@ -73,7 +86,15 @@ Remove build artefacts:
 make clean
 ```
 
-Compiled PDFs are written to the `build/` directory.
+### Windows (PowerShell)
+
+If you don't have `make`, use the included PowerShell build script:
+
+```powershell
+./build.ps1
+./build.ps1 -Target en
+./build.ps1 -Target nl
+```
 
 ## Where to edit the template
 
@@ -122,6 +143,10 @@ Only change the shared files if you want to alter the visual design or the macro
 ## Customisation notes
 
 - Replace the placeholder image in `assets/images/profile-placeholder.jpg`.
+- To disable the profile photo, remove or comment out the photo line in:
+  - English: `src/en/main.tex` (`\photo{...}{...}`)
+  - Dutch: `src/nl/main.tex` (`\foto{...}{...}`)
+  The header layout automatically switches to a centered version when no photo is set.
 - Update the example identity (`John Doe`) in both `main.tex` files.
 - Replace the example content in the section files with your own material.
 - Keep the same command structure if you want to preserve the existing visual output.

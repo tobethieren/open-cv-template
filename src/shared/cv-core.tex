@@ -95,7 +95,7 @@
 \newcommand*{\cv@firstname}[1]{\def\@voornaam{#1}}
 \newcommand*{\cv@lastname}[1]{\def\@achternaam{#1}}
 \newcommand*{\cv@tagline}[1]{\def\@tagline{#1}}
-\newcommand{\cv@photo}[2]{\def\@foto{#2}\def\@fotodiameter{#1}}
+\newcommand{\cv@photo}[2]{\def\@foto{#2}\def\@fotodiameter{#1}\def\@hasfoto{true}}
 \newcommand{\cv@socialinfo}[1]{\def\@socialeinfo{#1}}
 
 \newcommand*{\cv@address}[1]{\socialetekst{\locatiesymbool}{#1}}
@@ -117,14 +117,24 @@
 }
 
 \newcommand*{\cv@makeheader}{
-    \begin{minipage}{\dimexpr\linewidth-\@fotodiameter-2em}
-        \gebruiker{\@voornaam}{\@achternaam}
-        \cvkop{\@tagline}
-        {\small{\@socialeinfo}}
-    \end{minipage}
-    \begin{minipage}{\@fotodiameter}
-        \idfoto
-    \end{minipage}
+    \ifx\@hasfoto\undefined
+        % No photo provided: centered layout
+        \begin{center}
+            \gebruiker{\@voornaam}{\@achternaam}
+            \cvkop{\@tagline}
+            {\small{\@socialeinfo}}
+        \end{center}
+    \else
+        % Photo provided: split layout
+        \begin{minipage}{\dimexpr\linewidth-\@fotodiameter-2em}
+            \gebruiker{\@voornaam}{\@achternaam}
+            \cvkop{\@tagline}
+            {\small{\@socialeinfo}}
+        \end{minipage}
+        \begin{minipage}{\@fotodiameter}
+            \idfoto
+        \end{minipage}
+    \fi
     \bigskip
 }
 
